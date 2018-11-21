@@ -274,8 +274,11 @@ class Seller extends Resource
                       ->setOriginalCurrency($input['original_currency'])
                       ->setAccountId($input['account_id'])
                       ->setDescription($input['description'])
-                      ->setControl($input['control'])
-                      ->setPayer(new Payer($input['payer']['email'], $input['payer']['first_name'], $input['payer']['last_name']));
+                      ->setControl($input['control']);
+        if (isset($input['payer'])) {
+            //fix to refund payment type
+            $operation->setPayer(new Payer($input['payer']['email'], $input['payer']['first_name'], $input['payer']['last_name']));
+        }
         if ($input['related_operation'] != null) {
             $operation->setRelatedOperation($input['related_operation']);
         }
