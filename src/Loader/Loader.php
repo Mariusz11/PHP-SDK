@@ -67,6 +67,9 @@ class Loader
      */
     public static function load(Parser $current = null, Parser $default = null)
     {
+        if (!$current) {
+            $current = new Parser();
+        }
         if (empty(self::$instance)) {
             self::$instance = new self($current, $default);
         } elseif ($current !== null || $default !== null) {
