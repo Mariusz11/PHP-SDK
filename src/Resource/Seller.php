@@ -171,7 +171,8 @@ class Seller extends Resource
     {
         try {
             foreach ($this->getPaginateDataFromApi('operations/?control='.$id.'&format=json') as $operation) {
-                if ($operation['control'] === $id) {
+                //when id is type int
+                if ($operation['control'] == $id) {
                     return $this->getWrapedOperation($operation);
                 }
             }
